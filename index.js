@@ -8,7 +8,11 @@ const port = process.env.PORT || 3001;
 
 const genius = new Client(process.env.GENIUS_ACCESS_TOKEN);
 
-app.use(cors());
+app.use(cors({
+  origin: ["https://lyrics-game-seven.vercel.app/"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 app.get("/lyrics", async (req, res) => {
   const { title, artist } = req.query;
